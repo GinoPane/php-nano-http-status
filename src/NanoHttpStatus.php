@@ -9,7 +9,12 @@ namespace GinoPane\NanoHttpStatus;
  */
 class NanoHttpStatus implements NanoHttpStatusInterface
 {
-    protected static $httpStatusDescriptions = [
+    /**
+     * HTTP status common descriptions
+     *
+     * @var array
+     */
+    protected static $httpStatusNames = [
         self::HTTP_CONTINUE => 'Continue',
         self::HTTP_SWITCHING_PROTOCOLS => 'Switching Protocols',
         self::HTTP_PROCESSING => 'Processing',
@@ -19,58 +24,98 @@ class NanoHttpStatus implements NanoHttpStatusInterface
         self::HTTP_ACCEPTED => 'Accepted',
         self::HTTP_NON_AUTHORITATIVE_INFORMATION => 'Non-Authoritative Information',
         self::HTTP_NO_CONTENT => 'No Content',
-        205 => 'Reset Content',
-        206 => 'Partial Content',
-        207 => 'Multi-Status',          // RFC4918
-        208 => 'Already Reported',      // RFC5842
-        226 => 'IM Used',               // RFC3229
-        300 => 'Multiple Choices',
-        301 => 'Moved Permanently',
-        302 => 'Found',
-        303 => 'See Other',
-        304 => 'Not Modified',
-        305 => 'Use Proxy',
-        306 => 'Reserved',
-        307 => 'Temporary Redirect',
-        308 => 'Permanent Redirect',    // RFC7238
-        400 => 'Bad Request',
-        401 => 'Unauthorized',
-        402 => 'Payment Required',
-        403 => 'Forbidden',
-        404 => 'Not Found',
-        405 => 'Method Not Allowed',
-        406 => 'Not Acceptable',
-        407 => 'Proxy Authentication Required',
-        408 => 'Request Timeout',
-        409 => 'Conflict',
-        410 => 'Gone',
-        411 => 'Length Required',
-        412 => 'Precondition Failed',
-        413 => 'Request Entity Too Large',
-        414 => 'Request-URI Too Long',
-        415 => 'Unsupported Media Type',
-        416 => 'Requested Range Not Satisfiable',
-        417 => 'Expectation Failed',
-        418 => 'I\'m a teapot',
-        421 => '',
-        422 => 'Unprocessable Entity',
-        423 => 'Locked',
-        424 => 'Failed Dependency',
-        425 => 'Reserved for WebDAV advanced collections expired proposal',
-        426 => 'Upgrade Required',
-        428 => 'Precondition Required',
-        429 => 'Too Many Requests',
-        431 => 'Request Header Fields Too Large',
-        500 => 'Internal Server Error',
-        501 => 'Not Implemented',
-        502 => 'Bad Gateway',
-        503 => 'Service Unavailable',
-        504 => 'Gateway Timeout',
-        505 => 'HTTP Version Not Supported',
-        506 => 'Variant Also Negotiates (Experimental)',
-        507 => 'Insufficient Storage',
-        508 => 'Loop Detected',
-        510 => 'Not Extended',
-        511 => 'Network Authentication Required',
+        self::HTTP_RESET_CONTENT => 'Reset Content',
+        self::HTTP_PARTIAL_CONTENT => 'Partial Content',
+        self::HTTP_MULTI_STATUS => 'Multi-Status',
+        self::HTTP_ALREADY_REPORTED => 'Already Reported',
+        self::HTTP_IM_USED => 'IM Used',
+        self::HTTP_MULTIPLE_CHOICES => 'Multiple Choices',
+        self::HTTP_MOVED_PERMANENTLY => 'Moved Permanently',
+        self::HTTP_FOUND => 'Found',
+        self::HTTP_SEE_OTHER => 'See Other',
+        self::HTTP_NOT_MODIFIED => 'Not Modified',
+        self::HTTP_USE_PROXY => 'Use Proxy',
+        self::HTTP_TEMPORARY_REDIRECT => 'Temporary Redirect',
+        self::HTTP_PERMANENTLY_REDIRECT => 'Permanent Redirect',
+        self::HTTP_BAD_REQUEST => 'Bad Request',
+        self::HTTP_UNAUTHORIZED => 'Unauthorized',
+        self::HTTP_PAYMENT_REQUIRED => 'Payment Required',
+        self::HTTP_FORBIDDEN => 'Forbidden',
+        self::HTTP_NOT_FOUND => 'Not Found',
+        self::HTTP_METHOD_NOT_ALLOWED => 'Method Not Allowed',
+        self::HTTP_NOT_ACCEPTABLE => 'Not Acceptable',
+        self::HTTP_PROXY_AUTHENTICATION_REQUIRED => 'Proxy Authentication Required',
+        self::HTTP_REQUEST_TIMEOUT => 'Request Timeout',
+        self::HTTP_CONFLICT => 'Conflict',
+        self::HTTP_GONE => 'Gone',
+        self::HTTP_LENGTH_REQUIRED => 'Length Required',
+        self::HTTP_PRECONDITION_FAILED => 'Precondition Failed',
+        self::HTTP_PAYLOAD_TOO_LARGE => 'Payload Too Large',
+        self::HTTP_URI_TOO_LONG => 'URI Too Long',
+        self::HTTP_UNSUPPORTED_MEDIA_TYPE => 'Unsupported Media Type',
+        self::HTTP_RANGE_NOT_SATISFIABLE => 'Requested Range Not Satisfiable',
+        self::HTTP_EXPECTATION_FAILED => 'Expectation Failed',
+        self::HTTP_I_AM_A_TEAPOT => 'I\'m a teapot',
+        self::HTTP_MISDIRECTED_REQUEST => 'Misdirected Request',
+        self::HTTP_UNPROCESSABLE_ENTITY => 'Unprocessable Entity',
+        self::HTTP_LOCKED => 'Locked',
+        self::HTTP_FAILED_DEPENDENCY => 'Failed Dependency',
+        self::HTTP_UPGRADE_REQUIRED => 'Upgrade Required',
+        self::HTTP_PRECONDITION_REQUIRED => 'Precondition Required',
+        self::HTTP_TOO_MANY_REQUESTS => 'Too Many Requests',
+        self::HTTP_REQUEST_HEADER_FIELDS_TOO_LARGE => 'Request Header Fields Too Large',
+        self::HTTP_INTERNAL_SERVER_ERROR => 'Internal Server Error',
+        self::HTTP_NOT_IMPLEMENTED => 'Not Implemented',
+        self::HTTP_BAD_GATEWAY => 'Bad Gateway',
+        self::HTTP_SERVICE_UNAVAILABLE => 'Service Unavailable',
+        self::HTTP_GATEWAY_TIMEOUT => 'Gateway Timeout',
+        self::HTTP_VERSION_NOT_SUPPORTED => 'HTTP Version Not Supported',
+        self::HTTP_VARIANT_ALSO_NEGOTIATES => 'Variant Also Negotiates',
+        self::HTTP_INSUFFICIENT_STORAGE => 'Insufficient Storage',
+        self::HTTP_LOOP_DETECTED => 'Loop Detected',
+        self::HTTP_NOT_EXTENDED => 'Not Extended',
+        self::HTTP_NETWORK_AUTHENTICATION_REQUIRED => 'Network Authentication Required',
     ];
+
+    const UNDEFINED_STATUS_MESSAGE = 'Undefined Status';
+
+    public function __construct()
+    {
+
+    }
+
+    public function statusExists(int $code): bool
+    {
+
+    }
+
+    public function getMessage(int $code): string
+    {
+
+    }
+
+    public function isInformational(int $code): bool
+    {
+
+    }
+
+    public function isSuccess(int $code): bool
+    {
+
+    }
+
+    public function isRedirection(int $code): bool
+    {
+
+    }
+
+    public function isClientError(int $code): bool
+    {
+
+    }
+
+    public function isServerError(int $code): bool
+    {
+
+    }
 }

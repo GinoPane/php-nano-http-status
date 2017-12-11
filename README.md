@@ -1,8 +1,6 @@
 PHP Nano Http Status
 ============
 
-<sub>Powered by [composer-package-template](https://github.com/GinoPane/composer-package-template)</sub>
-
 [![Latest Stable Version](https://poser.pugx.org/gino-pane/nano-http-status/v/stable)](https://packagist.org/packages/gino-pane/nano-http-status)
 [![License](https://poser.pugx.org/gino-pane/nano-http-status/license)](https://packagist.org/packages/gino-pane/nano-http-status)
 [![composer.lock](https://poser.pugx.org/gino-pane/nano-http-status/composerlock)](https://packagist.org/packages/gino-pane/nano-http-status)
@@ -75,11 +73,6 @@ Please refer to [LICENSE](https://github.com/GinoPane/composer-package-template/
 Useful Tools
 ============
 
-Running tests with Composer:
-----------------------------
-
-
-
 Code sniffer tool:
 ------------------
 
@@ -106,3 +99,8 @@ PhpUnit:
  or 
  
  ```composer test```
+ 
+Notes
+=====
+ 
+Powered by [composer-package-template](https://github.com/GinoPane/composer-package-template)
