@@ -1,0 +1,53 @@
+{
+    "name": "gino-pane/nano-http-status",
+    "description": "Truly minimalistic and self-contained package to handle HTTP statuses and relevant description messages",
+    "homepage": "http://github.com/GinoPane/php-nano-http-status",
+    "keywords": [
+        "http",
+        "http status",
+        "http status code",
+        "status code",
+        "php http status",
+        "php http code"
+    ],
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Sergey <Gino Pane> Karavay",
+            "homepage": "http://sergey.karavay.name",
+            "email": "sergey.karavay@gmail.com",
+            "role": "Developer"
+        }
+    ],
+    "support": {
+        "source": "https://github.com/GinoPane/php-nano-http-status",
+        "docs": "https://github.com/GinoPane/php-nano-http-status/blob/master/README.md",
+        "issues": "https://github.com/GinoPane/php-nano-http-status/issues"
+    },
+    "type": "library",
+    "require": {
+        "php": "^7.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^6.0",
+        "squizlabs/php_codesniffer": "^3.0",
+        "phpmd/phpmd" : "^2.6",
+        "phpdocumentor/phpdocumentor" : "^2.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "GinoPane\\NanoHttpStatus\\": "src/"
+        }
+    },
+    "scripts": {
+        "test": [
+            "@php vendor/bin/phpunit"
+        ],
+        "psr2check": [
+            "@php vendor/bin/phpcs --standard=PSR2 src/"
+        ],
+        "psr2autofix": [
+            "@php vendor/bin/phpcbf --standard=PSR2 src/"
+        ]
+    }
+}
