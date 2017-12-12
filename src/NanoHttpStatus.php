@@ -192,6 +192,6 @@ class NanoHttpStatus implements NanoHttpStatusInterface
      */
     private function extractFirstDigit(int $code): int
     {
-        return substr((string)$code, 0, 1);
+        return (int)substr((string)$code, 0, 1);
     }
 }
