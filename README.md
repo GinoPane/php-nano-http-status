@@ -15,12 +15,12 @@ Truly minimalistic and self-contained package to handle HTTP statuses and releva
 either too heavy and over-complicated or simply does not fit to Gino Pane's high code quality standards.
 
 Requirements
-------------
+============
 
 * PHP >= 7.0;
 
 Features
---------
+========
 
 * The full list of HTTP status codes as readable constants;
 * relevant status messages;
