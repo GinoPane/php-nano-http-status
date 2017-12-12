@@ -16,6 +16,17 @@ Types of changes
 
 ## [Unreleased]
 
+## 1.0.0 - 2017-12-12
+
+### Features
+
+* The full list of HTTP status codes as readable constants;
+* relevant status messages;
+* ability to customize messages;
+* ability to easily detect the class of the status;
+* no dependencies in production;
+* integrated tools for code quality, testing and building docs.
+
 ## 0.1.0 - 2017-12-11
 
 ### Features

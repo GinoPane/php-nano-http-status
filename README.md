@@ -17,39 +17,59 @@ either too heavy and over-complicated or simply does not fit to Gino Pane's high
 Requirements
 ------------
 
-* PHP >= 7.1;
-* composer.
+* PHP >= 7.0;
 
 Features
 --------
 
-* PSR-4 autoloading compliant structure;
-* PSR-2 compliant code style;
-* Unit-Testing with PHPUnit 6;
-* Comprehensive guide and tutorial;
-* Easy to use with any framework or even a plain php file;
-* Useful tools for better code included.
+* The full list of HTTP status codes as readable constants;
+* relevant status messages;
+* ability to customize messages;
+* ability to easily detect the class of the status;
+* no dependencies in production;
+* integrated tools for code quality, testing and building docs.
 
 Installation
 ============
 
-    composer create-project gino-pane/composer-package-template yourproject
+    composer require gino-pane/nano-http-status
+
+Basic Usage
+===========
+
+Check existence of the code (using numeric codes or nice readable constants):
+
+    (new NanoHttpStatus())->statusExists(200); //true
+    (new NanoHttpStatus())->statusExists(400); //true
+    (new NanoHttpStatus())->statusExists(451); //true
+    (new NanoHttpStatus())->statusExists(511); //true
+    (new NanoHttpStatus())->statusExists(522); //false
     
-This will create a basic project structure for you:
+Detect the class of the code using code numbers:
 
-* **/build** is used to store code coverage output by default;
-* **/src** is where your codes will live in, each class will need to reside in its own file inside this folder;
-* **/tests** each class that you write in src folder needs to be tested before it was even "included" into somewhere else. So basically we have tests classes there to test other classes;
-* **.gitignore** there are certain files that we don't want to publish in Git, so we just add them to this fle for them to "get ignored by git";
-* **CHANGELOG.md** to keep track of package updates;
-* **CONTRIBUTION.md** Contributor Covenant Code of Conduct;
-* **LICENSE** terms of how much freedom other programmers is allowed to use this library;
-* **README.md** it is a mini documentation of the library, this is usually the "home page" of your repo if you published it on GitHub and Packagist;
-* **composer.json** is where the information about your library is stored, like package name, author and dependencies;
-* **phpunit.xml** It is a configuration file of PHPUnit, so that tests classes will be able to test the classes you've written;
-* **.travis.yml** basic configuration for Travis CI with configured test coverage reporting for code climate.
+    (new NanoHttpStatus())->isInformational(NanoHttpStatus::HTTP_OK); //false
+    (new NanoHttpStatus())->isSuccess(202);         //true
+    (new NanoHttpStatus())->isRedirection(301);     //true
+    (new NanoHttpStatus())->isClientError(404);     //true
+    (new NanoHttpStatus())->isServerError(NanoHttpStatus::HTTP_BAD_REQUEST); //false
+    
+Get status message by status code:
 
-Please refer to original [article](http://www.darwinbiler.com/creating-composer-package-library/) for more information.
+    (new NanoHttpStatus())->getMessage(200); //OK
+    (new NanoHttpStatus())->getMessage(451); //Unavailable For Legal Reasons
+    (new NanoHttpStatus())->getMessage(452); //Undefined Status
+    
+Set localization mapping and get custom status messages:
+
+    $status = new NanoHttpStatus([
+        NanoHttpStatus::HTTP_BAD_REQUEST => 'Very bad request',
+        NanoHttpStatus::HTTP_BAD_GATEWAY => 'Not so bad gateway'
+    ]);
+    
+    $status->getMessage(400); //'Very bad request'
+    $status->getMessage(502); //'Not so bad gateway'
+    
+Please note, that ```NanoHttpStatus``` itself does not throw any exceptions for invalid statuses.
 
 Useful Tools
 ============
@@ -94,7 +114,7 @@ Building Docs:
 Changelog
 =========
 
-To keep track, please refer to [CHANGELOG.md](https://github.com/GinoPane/composer-package-template/blob/master/CHANGELOG.md).
+To keep track, please refer to [CHANGELOG.md](https://github.com/GinoPane/php-nano-http-status/blob/master/CHANGELOG.md).
 
 Contributing
 ============
@@ -107,12 +127,12 @@ Contributing
 6. Push to the branch (git push origin my-new-feature).
 7. Create new pull request.
 
-Also please refer to [CONTRIBUTION.md](https://github.com/GinoPane/composer-package-template/blob/master/CONTRIBUTION.md).
+Also please refer to [CONTRIBUTION.md](https://github.com/GinoPane/php-nano-http-status/blob/master/CONTRIBUTION.md).
 
 License
 =======
 
-Please refer to [LICENSE](https://github.com/GinoPane/composer-package-template/blob/master/LICENSE).
+Please refer to [LICENSE](https://github.com/GinoPane/php-nano-http-status/blob/master/LICENSE).
  
 Notes
 =====
