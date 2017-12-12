@@ -5,7 +5,7 @@ PHP Nano Http Status
 [![Build Status](https://travis-ci.org/GinoPane/php-nano-rest.svg?branch=master)](https://travis-ci.org/GinoPane/php-nano-rest)
 [![Maintainability](https://img.shields.io/codeclimate/maintainability/GinoPane/php-nano-http-status.svg)](https://codeclimate.com/github/GinoPane/php-nano-http-status/maintainability)
 [![Test Coverage](https://img.shields.io/codeclimate/coverage/github/GinoPane/php-nano-http-status.svg)](https://codeclimate.com/github/GinoPane/php-nano-http-status/test_coverage)
-[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/GinoPane/php-nano-rest/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/GinoPane/php-nano-http-status/?branch=master)
+[![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/GinoPane/php-nano-http-status/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/GinoPane/php-nano-http-status/?branch=master)
 [![License](https://poser.pugx.org/gino-pane/nano-http-status/license)](https://packagist.org/packages/gino-pane/nano-http-status)
 [![composer.lock](https://poser.pugx.org/gino-pane/nano-http-status/composerlock)](https://packagist.org/packages/gino-pane/nano-http-status)
 [![Total Downloads](https://poser.pugx.org/gino-pane/nano-http-status/downloads)](https://packagist.org/packages/gino-pane/nano-http-status)
