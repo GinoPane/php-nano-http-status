@@ -10,11 +10,16 @@ namespace GinoPane\NanoHttpStatus;
 class NanoHttpStatus implements NanoHttpStatusInterface
 {
     /**
+     * Default placeholder for non-existent status
+     */
+    const UNDEFINED_STATUS_MESSAGE = 'Undefined Status';
+
+    /**
      * HTTP status common descriptions
      *
      * @var array
      */
-    protected static $httpStatusNames = [
+    private static $defaultStatuses = [
         self::HTTP_CONTINUE => 'Continue',
         self::HTTP_SWITCHING_PROTOCOLS => 'Switching Protocols',
         self::HTTP_PROCESSING => 'Processing',
@@ -64,6 +69,7 @@ class NanoHttpStatus implements NanoHttpStatusInterface
         self::HTTP_PRECONDITION_REQUIRED => 'Precondition Required',
         self::HTTP_TOO_MANY_REQUESTS => 'Too Many Requests',
         self::HTTP_REQUEST_HEADER_FIELDS_TOO_LARGE => 'Request Header Fields Too Large',
+        self::HTTP_UNAVAILABLE_FOR_LEGAL_REASONS => 'Unavailable For Legal Reasons',
         self::HTTP_INTERNAL_SERVER_ERROR => 'Internal Server Error',
         self::HTTP_NOT_IMPLEMENTED => 'Not Implemented',
         self::HTTP_BAD_GATEWAY => 'Bad Gateway',
@@ -77,45 +83,115 @@ class NanoHttpStatus implements NanoHttpStatusInterface
         self::HTTP_NETWORK_AUTHENTICATION_REQUIRED => 'Network Authentication Required',
     ];
 
-    const UNDEFINED_STATUS_MESSAGE = 'Undefined Status';
+    /**
+     * Array of ready-to-use status messages
+     *
+     * @var string[]
+     */
+    private $statuses = [];
 
-    public function __construct()
+    public function __construct(array $localize = [])
     {
+        $this->statuses = self::$defaultStatuses;
 
+        if (!empty($localize)) {
+            $this->statuses = array_intersect_key($localize, $this->statuses) + $this->statuses;
+        }
     }
 
+    /**
+     * Returns 'true' if status code exists, 'false' otherwise
+     *
+     * @param int $code
+     *
+     * @return bool
+     */
     public function statusExists(int $code): bool
     {
-
+        return isset($this->statuses[$code]);
     }
 
+    /**
+     * Returns relevant status message if status exists, 'Undefined Status' is returned otherwise
+     *
+     * @param int $code
+     *
+     * @return string
+     */
     public function getMessage(int $code): string
     {
-
+        return $this->statusExists($code) ? $this->statuses[$code] : self::UNDEFINED_STATUS_MESSAGE;
     }
 
+    /**
+     * Returns 'true' if status exists and belongs to "informational" (1xx) statuses, 'false' otherwise
+     *
+     * @param int $code
+     *
+     * @return bool
+     */
     public function isInformational(int $code): bool
     {
-
+        return $this->statusExists($code) && ($this->extractFirstDigit($code) == self::CLASS_INFORMATIONAL);
     }
 
+    /**
+     * Returns 'true' if status exists and belongs to "success" (2xx) statuses, 'false' otherwise
+     *
+     * @param int $code
+     *
+     * @return bool
+     */
     public function isSuccess(int $code): bool
     {
-
+        return $this->statusExists($code) && ($this->extractFirstDigit($code) == self::CLASS_SUCCESS);
     }
 
+    /**
+     * Returns 'true' if status exists and belongs to "redirection" (3xx) statuses, 'false' otherwise
+     *
+     * @param int $code
+     *
+     * @return bool
+     */
     public function isRedirection(int $code): bool
     {
-
+        return $this->statusExists($code) && ($this->extractFirstDigit($code) == self::CLASS_REDIRECTION);
     }
 
+    /**
+     * Returns 'true' if status exists and belongs to "client error" (4xx) statuses, 'false' otherwise
+     *
+     * @param int $code
+     *
+     * @return bool
+     */
     public function isClientError(int $code): bool
     {
-
+        return $this->statusExists($code) && ($this->extractFirstDigit($code) == self::CLASS_CLIENT_ERROR);
     }
 
+    /**
+     * Returns 'true' if status exists and belongs to "server error" (5xx) statuses, 'false' otherwise
+     *
+     * @param int $code
+     *
+     * @return bool
+     */
     public function isServerError(int $code): bool
     {
+        return $this->statusExists($code) && ($this->extractFirstDigit($code) == self::CLASS_SERVER_ERROR);
+    }
 
+    /**
+     * Extracts the first digit of the number
+     *
+     * @param int $code
+     *
+     * @return int
+     */
+    private function extractFirstDigit(int $code): int
+    {
+        return substr((string)$code, 0, 1);
     }
 }

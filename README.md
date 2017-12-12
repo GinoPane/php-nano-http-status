@@ -47,6 +47,46 @@ This will create a basic project structure for you:
 
 Please refer to original [article](http://www.darwinbiler.com/creating-composer-package-library/) for more information.
 
+Useful Tools
+============
+
+Running Tests:
+--------
+
+    php vendor/bin/phpunit
+ 
+ or 
+ 
+    composer test
+
+Code Sniffer Tool:
+------------------
+
+    php vendor/bin/phpcs --standard=PSR2 src/
+ 
+ or
+ 
+    composer psr2check
+
+Code Auto-fixer:
+----------------
+
+    php vendor/bin/phpcbf --standard=PSR2 src/ 
+    
+ or
+ 
+    composer psr2autofix
+ 
+ 
+Building Docs:
+--------
+
+    php vendor/bin/phpdoc -d "src" -t "docs"
+ 
+ or 
+ 
+    composer docs
+
 Changelog
 =========
 
@@ -69,36 +109,6 @@ License
 =======
 
 Please refer to [LICENSE](https://github.com/GinoPane/composer-package-template/blob/master/LICENSE).
-
-Useful Tools
-============
-
-Code sniffer tool:
-------------------
-
- ```php vendor/bin/phpcs --standard=PSR2 src/```
- 
- or
- 
- ```composer psr2check```
-
-Code auto-fixer:
-----------------
-
- ```php vendor/bin/phpcbf --standard=PSR2 src/``` 
-    
- or
- 
- ```composer psr2autofix```
- 
-PhpUnit:
---------
-
- ```php vendor/bin/phpunit```
- 
- or 
- 
- ```composer test```
  
 Notes
 =====
