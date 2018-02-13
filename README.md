@@ -7,7 +7,6 @@ PHP Nano Http Status
 [![Test Coverage](https://api.codeclimate.com/v1/badges/fdabec77a1195d3611cf/test_coverage)](https://codeclimate.com/github/GinoPane/php-nano-http-status/test_coverage)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/GinoPane/php-nano-http-status/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/GinoPane/php-nano-http-status/?branch=master)
 [![License](https://poser.pugx.org/gino-pane/nano-http-status/license)](https://packagist.org/packages/gino-pane/nano-http-status)
-[![composer.lock](https://poser.pugx.org/gino-pane/nano-http-status/composerlock)](https://packagist.org/packages/gino-pane/nano-http-status)
 [![Total Downloads](https://poser.pugx.org/gino-pane/nano-http-status/downloads)](https://packagist.org/packages/gino-pane/nano-http-status)
 
 Truly minimalistic and self-contained package to handle HTTP statuses and relevant description messages. Such packages as 
